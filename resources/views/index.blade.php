@@ -51,6 +51,17 @@
     <div id="home" class="header-hero bg_cover d-lg-flex align-items-center"
          style="background-image: url(assets/images/header-hero.jpg)">
         <div class="container">
+            @if(session()->has('message'))
+                <div class="alert alert-danger">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    {!! $errors->first('email', '<p style="color:red">Maaf! Anda sudah melakukan kuesioner ini.</p>') !!}
+                </div>
+
+            @endif
             <div class="row">
                 <div class="col-lg-7">
                     <div class="header-hero-content">
@@ -85,12 +96,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-9">
-                    <div class="mb-10 about-title text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+                    <div class="mb-10 about-title text-center wow fadeInUp" data-wow-duration="1s"
+                         data-wow-delay="0.3s">
                         <h6 class="welcome">Selamat Datang</h6>
                         <h3 class="title">Sebelum anda mengisi kuesioner, apakah anda selalu menggunakan aplikasi
                             E-Smart Samsat untuk keperluan sesuai hak akses yang diberikan?</h3>
                     </div>
-                    <form id="contact-form" action="{{route('responden.store')}}" method="post" >
+                    <form id="contact-form" action="{{route('responden.store')}}" method="post">
                         @csrf
                         <div class="col-md-12">
                             <div class="row">
@@ -113,7 +125,12 @@
                                     </div> <!-- contact-form -->
                                 </div>
                             </div>
-
+                            <div class="col-md-12 text-center">
+                                <div class="contact-form mt-45">
+                                    <label>Enter Your Email</label>
+                                    <input type="email" name="email" required>
+                                </div> <!-- contact-form -->
+                            </div>
                         </div> <!-- row -->
                         <div class="row mt-20">
                             <div class="col text-center">

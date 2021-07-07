@@ -36,8 +36,15 @@ class RespondenController extends Controller
      */
     public function store(Request $request)
     {
-        Responden::create(Request::all());
-//        return Request::all();
+        Request::validate([
+            'email' => ['required', 'unique:respondens']
+        ]);
+        $data = Responden::create(Request::all());
+        if ($data->confirm == 1) {
+            return 'sukses';
+        } elseif ($data->confirm == 0) {
+            return redirect()->back()->with('message', 'Anda tidak memenuhi syarat, Terima kasih!');
+        }
     }
 
     /**
