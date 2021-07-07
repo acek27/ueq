@@ -90,7 +90,8 @@
                         <h3 class="title">Sebelum anda mengisi kuesioner, apakah anda selalu menggunakan aplikasi
                             E-Smart Samsat untuk keperluan sesuai hak akses yang diberikan?</h3>
                     </div>
-                    <form id="contact-form" action="assets/contact.php" method="post" >
+                    <form id="contact-form" action="{{route('responden.store')}}" method="post" >
+                        @csrf
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
@@ -116,7 +117,7 @@
                         </div> <!-- row -->
                         <div class="row mt-20">
                             <div class="col text-center">
-                                <button class="main-btn">Submit</button>
+                                <button class="main-btn" type="submit">Submit</button>
                             </div>
                         </div>
                     </form>

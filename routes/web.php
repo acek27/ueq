@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\RespondenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('kuesioner',KuesionerController::class);
+Route::resource('responden',RespondenController::class);
