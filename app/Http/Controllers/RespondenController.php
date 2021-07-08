@@ -86,7 +86,7 @@ class RespondenController extends Controller
         ]);
         $data = Responden::findOrFail($id);
         $data->update(Request::all());
-        return redirect()->route('resonden.show', $data->key)
+        return redirect()->route('responden.show', $data->key)
             ->with('message', 'Berhasil menyimpan data personal.');
     }
 

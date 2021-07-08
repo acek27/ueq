@@ -26,7 +26,7 @@
                         <h4 class="contact-title pb-10"><i class="lni-check-box"></i> Form
                             <span>Survei pengalaman pengguna.</span>
                         </h4>
-                        <form id="contact-form" action="{{route('responden.update', $data->id)}}" method="post">
+                        <form id="contact-form" action="{{route('kuesioner.update', $data->id)}}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="col-md-10">
@@ -41,8 +41,7 @@
                                                     @for($i = 1; $i<=7;$i++)
                                                         <div class="form-check ml-4">
                                                             <input class="form-check-input" type="radio"
-                                                                   name="{{$datum->code}}"
-                                                                   id="gender1" value="{{$i}}" required>
+                                                                   name="{{$datum->id}}" value="{{$i}}" required>
                                                         </div>
                                                     @endfor
                                                 </div>

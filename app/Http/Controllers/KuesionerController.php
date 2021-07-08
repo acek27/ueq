@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class KuesionerController extends Controller
 {
@@ -70,7 +70,7 @@ class KuesionerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return Request::all();
     }
 
     /**
