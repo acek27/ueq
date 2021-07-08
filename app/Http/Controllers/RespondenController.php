@@ -39,9 +39,10 @@ class RespondenController extends Controller
         Request::validate([
             'email' => ['required', 'unique:respondens']
         ]);
+        Request::merge(['key' => uniqid()]);
         $data = Responden::create(Request::all());
         if ($data->confirm == 1) {
-            return 'sukses';
+            return redirect()->route('responden.edit', $data->key);
         } elseif ($data->confirm == 0) {
             return redirect()->back()->with('message', 'Anda tidak memenuhi syarat, Terima kasih!');
         }
@@ -66,7 +67,7 @@ class RespondenController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('responden.index');
     }
 
     /**

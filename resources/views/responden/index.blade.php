@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="assets/images/logo.png" alt="Logo">
+                        <a class="navbar-brand" href="/">
+                            <img src="{{asset('assets/images/logo.png')}}" alt="Logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -96,7 +96,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-9">
-                    <div class="mb-15 about-title text-center wow fadeInUp" data-wow-duration="1s"
+                    <div class="mb-10 about-title text-center wow fadeInUp" data-wow-duration="1s"
                          data-wow-delay="0.3s">
                         <h6 class="welcome">Selamat Datang</h6>
                         <h3 class="title">Sebelum anda mengisi kuesioner, apakah anda selalu menggunakan aplikasi
@@ -126,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">
-                                <div class="contact-form mt-10">
+                                <div class="contact-form mt-45">
                                     <label>Masukkan Email Anda</label>
                                     <input autocomplete="off" class="form-control border border-danger text-center" type="email" name="email" required>
                                 </div> <!-- contact-form -->

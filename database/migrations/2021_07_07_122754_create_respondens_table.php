@@ -15,6 +15,7 @@ class CreateRespondensTable extends Migration
     {
         Schema::create('respondens', function (Blueprint $table) {
             $table->id();
+            $table->string('key')->unique();
             $table->string('email')->unique();
             $table->string('name')->nullable();
             $table->integer('age')->nullable()->unsigned();
