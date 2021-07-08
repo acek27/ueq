@@ -58,7 +58,7 @@ class KuesionerController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

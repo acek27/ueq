@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
+use App\Models\Item;
 use App\Models\Responden;
 use Illuminate\Support\Facades\Request;
 
@@ -28,12 +29,7 @@ class RespondenController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         Request::validate([
@@ -56,7 +52,9 @@ class RespondenController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Responden::where('key', $id)->first();
+        $kuesioner = Item::paginate(7);
+        return view('kuesioner.index', compact('data', 'kuesioner'));
     }
 
     /**
@@ -67,7 +65,8 @@ class RespondenController extends Controller
      */
     public function edit($id)
     {
-        return view('responden.index');
+        $data = Responden::where('key', $id)->first();
+        return view('responden.index', compact('data'));
     }
 
     /**
@@ -79,7 +78,16 @@ class RespondenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Request::validate([
+            'name' => ['required'],
+            'gender' => ['required'],
+            'age' => ['numeric', 'required'],
+            'location' => ['required'],
+        ]);
+        $data = Responden::findOrFail($id);
+        $data->update(Request::all());
+        return redirect()->route('resonden.show', $data->key)
+            ->with('message', 'Berhasil menyimpan data personal.');
     }
 
     /**
