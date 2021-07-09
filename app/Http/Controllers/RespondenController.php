@@ -53,7 +53,7 @@ class RespondenController extends Controller
     public function show($id)
     {
         $data = Responden::where('key', $id)->first();
-        $kuesioner = Item::paginate(7);
+        $kuesioner = Item::all();
         return view('kuesioner.index', compact('data', 'kuesioner'));
     }
 
