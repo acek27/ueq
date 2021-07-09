@@ -19,10 +19,11 @@ use App\Http\Controllers\RespondenController;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::resource('/',IndexController::class);
+Route::resource('/', IndexController::class);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('kuesioner',KuesionerController::class);
-Route::resource('responden',RespondenController::class);
+Route::get('/getitem/{id}', [App\Http\Controllers\KuesionerController::class, 'getItem'])->name('getitem');
+Route::resource('kuesioner', KuesionerController::class);
+Route::resource('responden', RespondenController::class);

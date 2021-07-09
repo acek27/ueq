@@ -27,7 +27,8 @@
 </head>
 <body>
 <!--[if IE]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
 <![endif]-->
 <!--====== PRELOADER PART START ======-->
 <div class="preloader">
@@ -93,7 +94,10 @@
                                                     @for($i = 1; $i<=7;$i++)
                                                         <div class="form-check ml-4">
                                                             <input class="form-check-input" type="radio"
-                                                                   name="Q{{$q}}" value="{{$i}}" required>
+                                                                   name="Q{{$q}}" data-id="{{$q}}"
+                                                                   onclick="q{{$q}}checked({{$i}}, {{$q}})"
+                                                                   value="{{$i}}"
+                                                                   required>
                                                         </div>
                                                     @endfor
                                                 </div>
@@ -105,7 +109,7 @@
                                     </div>
                                     @php($q++)
                                 @endforeach
-                                <div class="col-md-10 text-right">
+                                <div class="col-md-12 text-center">
                                     <div class="contact-form mt-45">
                                         <button type="submit" class="main-btn">Selanjutnya</button>
                                     </div> <!-- contact-form -->
@@ -117,6 +121,33 @@
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- header hero -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="item"></h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 text-center">
+                        <select name="feature" class="form-control border border-primary text-center">
+                            <option value="1">Informasi</option>
+                            <option value="2">Besaran Pajak</option>
+                            <option value="3">Informasi Pengesahan</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </header>
 
 <!--====== HEADER PART ENDS ======-->
@@ -130,7 +161,9 @@
                         <a href="#">
                             <img src="assets/images/logo.png" alt="Logo">
                         </a>
-                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, repudiandae! Totam, nemo sed? Provident.</p> <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus</p>
+                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus,
+                            repudiandae! Totam, nemo sed? Provident.</p>
+                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus</p>
                     </div> <!-- footer about -->
                 </div>
                 <div class="col-lg-3 col-sm-6 order-sm-3 order-lg-2">
@@ -182,18 +215,41 @@
             </div> <!-- row -->
         </div> <!-- footer widget -->
         <div class="footer-copyright text-center">
-            <p class="text">© 2022 Crafted by <a href="https://uideck.com" rel="nofollow">UIdeck</a> All Rights Reserved.</p>
+            <p class="text">© 2022 Crafted by <a href="https://uideck.com" rel="nofollow">UIdeck</a> All Rights
+                Reserved.</p>
         </div>
     </div> <!-- container -->
 </footer>
 
+<script>
+    function q1checked(q1, i1) {
+        $.get("{{url('/getitem')}}/" + i1, function (data) {
+            if (data.category === 1) {
+                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_left);
+            } else {
+                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_right);
+            }
+            $('#myModal').modal('show')
+        });
+    }
+
+    function q3checked(q3, i3) {
+        $.get("{{url('/getitem')}}/" + i3, function (data) {
+            if (data.category === 1) {
+                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_left);
+            } else {
+                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_right);
+            }
+            $('#myModal').modal('show')
+        });
+    }
+
+</script>
 <!--====== BACK TOP TOP PART START ======-->
 
 <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
 
 <!--====== BACK TOP TOP PART ENDS ======-->
-
-
 
 
 <!--====== Jquery js ======-->

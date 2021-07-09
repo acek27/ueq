@@ -86,4 +86,10 @@ class KuesionerController extends Controller
     {
         //
     }
+
+    public function getItem($id)
+    {
+        $data = Item::findOrFail($id);
+        return response()->json($data);
+    }
 }
