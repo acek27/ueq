@@ -2,6 +2,7 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="_token" content="{{ csrf_token() }}">
     <!--====== Title ======-->
     <title>Consult - Business Consultancy Agency Template | Home</title>
     <meta name="description" content="">
@@ -24,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/default.css')}}">
     <!--====== Style CSS ======-->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 </head>
 <body>
 <!--[if IE]>
@@ -59,22 +61,22 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                        </div>
-                    @endif
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="contact-wrapper-form pt-115  wow fadeInUpBig" data-wow-duration="1s"
                          data-wow-delay="0.5s">
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <h4 class="contact-title pb-10"><i class="lni-check-box"></i> Form
                             <span>Survei pengalaman pengguna.</span>
                         </h4>
@@ -111,7 +113,7 @@
                                 @endforeach
                                 <div class="col-md-12 text-center">
                                     <div class="contact-form mt-45">
-                                        <button type="submit" class="main-btn">Selanjutnya</button>
+                                        <button type="submit" class="main-btn">Submit</button>
                                     </div> <!-- contact-form -->
                                 </div>
                             </div>
@@ -131,18 +133,23 @@
                     <h6 class="modal-title" id="item"></h6>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body">
-                    <div class="col-lg-12 text-center">
-                        <select name="feature" class="form-control border border-primary text-center">
-                            <option value="1">Informasi</option>
-                            <option value="2">Besaran Pajak</option>
-                            <option value="3">Informasi Pengesahan</option>
-                        </select>
+                <form id="contact-form">
+                    <div class="modal-body">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-lg-12 text-center">
+                            <select id="fitur" name="fitur" class="form-control border border-primary text-center">
+                                <option value="1">Informasi</option>
+                                <option value="2">Besaran Pajak</option>
+                                <option value="3">Informasi Pengesahan</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="item_id" name="item_id">
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Simpan</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" id="ajaxSubmit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -221,36 +228,9 @@
     </div> <!-- container -->
 </footer>
 
-<script>
-    function q1checked(q1, i1) {
-        $.get("{{url('/getitem')}}/" + i1, function (data) {
-            if (data.category === 1) {
-                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_left);
-            } else {
-                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_right);
-            }
-            $('#myModal').modal('show')
-        });
-    }
-
-    function q3checked(q3, i3) {
-        $.get("{{url('/getitem')}}/" + i3, function (data) {
-            if (data.category === 1) {
-                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_left);
-            } else {
-                $('#item').text("Pilih fitur yang menurut anda paling " + data.item_right);
-            }
-            $('#myModal').modal('show')
-        });
-    }
-
-</script>
 <!--====== BACK TOP TOP PART START ======-->
 
 <a href="#" class="back-to-top"><i class="lni-chevron-up"></i></a>
-
-<!--====== BACK TOP TOP PART ENDS ======-->
-
 
 <!--====== Jquery js ======-->
 <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
@@ -292,9 +272,244 @@
 <!--====== Magnific Popup js ======-->
 <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
 
-<!--====== Main js ======-->
 <script src="{{asset('assets/js/main.js')}}"></script>
+<!--====== Main js ======-->
 
+<script src="{{asset('assets/sweetalert2/sweetalert2.min.js')}}"></script>
+
+<script>
+    function logic(q, data, left, right) {
+        if (data === 1) {
+            $('#item').text("Pilih fitur yang menurut anda paling " + left);
+            if (q <= 4) {
+                $('#myModal').modal('show')
+            }
+        } else {
+            $('#item').text("Pilih fitur yang menurut anda paling " + right);
+            if (q >= 4) {
+                $('#myModal').modal('show')
+            }
+        }
+    }
+
+    function q1checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q2checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q3checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q4checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q5checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q6checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q7checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q8checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q9checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q10checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q11checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q12checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q13checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q14checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q15checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q16checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q17checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q18checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q19checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q20checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q21checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q22checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q23checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q24checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q25checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+    function q26checked(q, i) {
+        $.get("{{url('/getitem')}}/" + i, function (data) {
+            logic(q, data.category, data.item_left, data.item_right)
+            $('#item_id').val(i)
+        });
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        $('#ajaxSubmit').click(function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('feature.submit')}}",
+                method: 'POST',
+                data: {
+                    item_id: $('#item_id').val(),
+                    responden_id: {{$data->id}},
+                    fitur: $('#fitur').val(),
+                },
+                success: function (result) {
+                    $('#myModal').modal('hide')
+                    Toast.fire({
+                        type: 'success',
+                        title: 'Berhasil disimpan.'
+                    })
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

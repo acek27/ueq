@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feature;
 use App\Models\Item;
 use App\Models\Kuesioner;
 use Illuminate\Support\Facades\Request;
@@ -27,6 +28,17 @@ class KuesionerController extends Controller
     public function create()
     {
         //
+    }
+
+    public function feature()
+    {
+        $data = Feature::updateOrCreate([
+            'item_id' => Request::get('item_id'),
+            'responden_id' => Request::get('responden_id')],
+            [
+                'fitur' => Request::get('fitur')
+            ]);
+        return response()->json($data);
     }
 
     /**
