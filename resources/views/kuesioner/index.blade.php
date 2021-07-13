@@ -77,21 +77,21 @@
                                 </ul>
                             </div>
                         @endif
-                        <h4 class="contact-title pb-10"><i class="lni-check-box"></i> Form
+                        <h4 class="contact-title"><i class="lni-check-box"></i> Form
                             <span>Survei pengalaman pengguna.</span>
                         </h4>
                         <form id="contact-form" action="{{route('kuesioner.update', $data->id)}}" method="post">
                             @csrf
                             @method('PUT')
-                            <div class="col-md-10">
+                            <div class="col-md-10 bg-light">
                                 @php($q = 1)
                                 @foreach($kuesioner as $datum)
                                     <div class="mt-45">
-                                        <div class="row">
-                                            <div class="col-lg-4 text-right">
+                                        <div class="row alert-success">
+                                            <div class="col-sm-4 text-right">
                                                 <label>{{$datum->item_left}}</label>
                                             </div>
-                                            <div class="col-lg-4 text-center">
+                                            <div class="col-sm-4 text-center">
                                                 <div class="row">
                                                     @for($i = 1; $i<=7;$i++)
                                                         <div class="form-check ml-4">
@@ -104,7 +104,7 @@
                                                     @endfor
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 text-left">
+                                            <div class="col-sm-4 text-left">
                                                 <label>{{$datum->item_right}}</label>
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title" id="item"></h6>
-{{--                    <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>--}}
+                    {{--                    <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>--}}
                 </div>
                 <form id="contact-form">
                     <div class="modal-body">
@@ -145,7 +145,6 @@
                             </select>
                         </div>
                         <input type="hidden" id="item_id" name="item_id">
-                        <input type="hidden" id="check_num" name="check_num">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="ajaxSubmit" class="btn btn-primary">Simpan</button>
@@ -279,34 +278,46 @@
 <script src="{{asset('assets/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <script>
-    function logic(q, i, data, left, right) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+    });
+</script>
+<script>
+    function hapus(i) { //fungsi untuk menghapus fitur
+        $.ajax({
+            url: "{{route('feature.delete')}}",
+            method: 'post',
+            data: {
+                item_id: i,
+                responden_id: {{$data->id}},
+            },
+            success: function (result) {
+                console.log(result.message)
+            }
+        });
+    }
+
+    function logic(q, i, data, left, right) { //fungsi logika untuk tampil popup
         if (data === 1) {
             $('#item').text("Pilih fitur yang menurut anda paling " + left);
             if (q <= 4) {
                 $('#myModal').modal('show')
-                $('#check_num').val(q)
             } else {
-                $.ajax({
-                    url: "{{route('feature.delete')}}",
-                    method: 'post',
-                    data: {
-                        item_id: i,
-                        responden_id: {{$data->id}},
-                    },
-                    success: function (result) {
-                        console.log(result)
-                    }
-                });
+                hapus(i)
             }
         } else {
             $('#item').text("Pilih fitur yang menurut anda paling " + right);
             if (q >= 4) {
                 $('#myModal').modal('show')
+            } else {
+                hapus(i)
             }
         }
     }
 
-    function q1checked(q, i) {
+    function q1checked(q, i) { //fungsi untuk mengambil data ketika radio dicek
         $.get("{{url('/getitem')}}/" + i, function (data) {
             logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
@@ -498,13 +509,8 @@
             timer: 3000
         });
 
-        $('#ajaxSubmit').click(function (e) {
+        $('#ajaxSubmit').click(function (e) { //syntax untuk menyimpan hasil kuesioner
             e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            });
             $.ajax({
                 url: "{{route('feature.submit')}}",
                 method: 'POST',

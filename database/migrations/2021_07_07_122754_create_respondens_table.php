@@ -22,6 +22,7 @@ class CreateRespondensTable extends Migration
             $table->char('gender')->nullable();
             $table->string('location')->nullable();
             $table->tinyInteger('confirm');
+            $table->tinyInteger('status');
         });
     }
 

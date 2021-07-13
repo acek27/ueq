@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Feature;
 use App\Models\Item;
 use App\Models\Kuesioner;
+use App\Models\Responden;
 use Illuminate\Support\Facades\Request;
 
 class KuesionerController extends Controller
@@ -45,7 +46,7 @@ class KuesionerController extends Controller
     {
         Feature::where('responden_id', Request::get('responden_id'))
             ->where('item_id', Request::get('item_id'))->delete();
-        return response()->json(['message' => 'success']);
+        return response()->json(['message' => 'success', 'item_id' => Request::get('item_id')]);
     }
 
     /**
@@ -92,6 +93,7 @@ class KuesionerController extends Controller
     {
         Request::merge(['responden_id' => $id]);
         Kuesioner::create(Request::all());
+        Responden::findOrFail($id)->update(['status' => 1]);
         return redirect()->back()->with('message', 'Berhasil menyimpan data kuesioner.');
     }
 
