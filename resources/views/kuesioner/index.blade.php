@@ -124,14 +124,14 @@
         </div> <!-- container -->
     </div> <!-- header hero -->
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="myModal" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title" id="item"></h6>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+{{--                    <button type="button" id="close" class="close" data-dismiss="modal">&times;</button>--}}
                 </div>
                 <form id="contact-form">
                     <div class="modal-body">
@@ -145,6 +145,7 @@
                             </select>
                         </div>
                         <input type="hidden" id="item_id" name="item_id">
+                        <input type="hidden" id="check_num" name="check_num">
                     </div>
                     <div class="modal-footer">
                         <button type="button" id="ajaxSubmit" class="btn btn-primary">Simpan</button>
@@ -283,6 +284,7 @@
             $('#item').text("Pilih fitur yang menurut anda paling " + left);
             if (q <= 4) {
                 $('#myModal').modal('show')
+                $('#check_num').val(q)
             } else {
                 $.ajax({
                     url: "{{route('feature.delete')}}",
