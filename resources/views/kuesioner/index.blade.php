@@ -313,175 +313,175 @@
 
     function q2checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q3checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q4checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q5checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q6checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q7checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q8checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q9checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q10checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q11checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q12checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q13checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q14checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q15checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q16checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q17checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q18checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q19checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q20checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q21checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q22checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q23checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q24checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q25checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }
 
     function q26checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }

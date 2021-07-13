@@ -44,7 +44,7 @@ class KuesionerController extends Controller
     public function deletefeature()
     {
         Feature::where('responden_id', Request::get('responden_id'))
-            ->where('item_id', Request::get('responden_id'))->delete();
+            ->where('item_id', Request::get('item_id'))->delete();
         return response()->json(['message' => 'success']);
     }
 
