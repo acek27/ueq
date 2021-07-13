@@ -278,11 +278,23 @@
 <script src="{{asset('assets/sweetalert2/sweetalert2.min.js')}}"></script>
 
 <script>
-    function logic(q, data, left, right) {
+    function logic(q, i, data, left, right) {
         if (data === 1) {
             $('#item').text("Pilih fitur yang menurut anda paling " + left);
             if (q <= 4) {
                 $('#myModal').modal('show')
+            } else {
+                $.ajax({
+                    url: "{{route('feature.delete')}}",
+                    method: 'post',
+                    data: {
+                        item_id: i,
+                        responden_id: {{$data->id}},
+                    },
+                    success: function (result) {
+                        console.log(result)
+                    }
+                });
             }
         } else {
             $('#item').text("Pilih fitur yang menurut anda paling " + right);
@@ -294,7 +306,7 @@
 
     function q1checked(q, i) {
         $.get("{{url('/getitem')}}/" + i, function (data) {
-            logic(q, data.category, data.item_left, data.item_right)
+            logic(q, i, data.category, data.item_left, data.item_right)
             $('#item_id').val(i)
         });
     }

@@ -26,5 +26,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/getitem/{id}', [App\Http\Controllers\KuesionerController::class, 'getItem'])->name('getitem');
 Route::post('/feature/', [App\Http\Controllers\KuesionerController::class, 'feature'])->name('feature.submit');
+Route::post('/deletefeature/', [App\Http\Controllers\KuesionerController::class, 'deletefeature'])->name('feature.delete');
 Route::resource('kuesioner', KuesionerController::class);
 Route::resource('responden', RespondenController::class);

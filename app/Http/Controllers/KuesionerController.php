@@ -41,6 +41,13 @@ class KuesionerController extends Controller
         return response()->json($data);
     }
 
+    public function deletefeature()
+    {
+        Feature::where('responden_id', Request::get('responden_id'))
+            ->where('item_id', Request::get('responden_id'))->delete();
+        return response()->json(['message' => 'success']);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
