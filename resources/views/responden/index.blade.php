@@ -5,24 +5,24 @@
     <div id="home" class="header-hero bg_cover d-lg-flex align-items-center"
          style="background-image: url(assets/images/header-hero.jpg)">
         <div class="container">
-            @if(session()->has('message'))
-                <div class="alert alert-danger">
-                    {{ session()->get('message') }}
-                </div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-wrapper-form pt-115  wow fadeInUpBig" data-wow-duration="1s"
                          data-wow-delay="0.5s">
+                        @if(session()->has('message'))
+                            <div class="alert alert-danger">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <h4 class="contact-title pb-10"><i class="lni-user"></i> Masukkan
                             <span>informasi personal anda.</span>
                         </h4>
@@ -38,13 +38,13 @@
                                 <div class="contact-form mt-45">
                                     <label>Masukkan Nama</label>
                                     <input class="border border-primary" type="text" autocomplete="off" name="name"
-                                           placeholder="Nama lengkap">
+                                           placeholder="Nama lengkap" required>
                                 </div> <!-- contact-form -->
-                                <div class="col-md-12">
-                                    <div class="contact-form mt-45">
-                                        <label>Jenis Kelamin</label>
-                                    </div>
+                                <div class="row">
                                     <div class="col-lg-6">
+                                        <div class="contact-form mt-45">
+                                            <label>Jenis Kelamin</label>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-check">
@@ -66,19 +66,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="contact-form mt-45">
+                                            <label>Usia</label>
+                                            <input class="border border-primary" type="number" autocomplete="off"
+                                                   name="age" required>
+                                        </div> <!-- contact-form -->
+                                    </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="contact-form mt-45">
-                                        <label>Usia</label>
-                                        <input class="border border-primary" type="number" autocomplete="off"
-                                               name="age">
-                                    </div> <!-- contact-form -->
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="contact-form mt-45">
-                                        <label>Asal Kendaraan</label>
-                                        <input class="border border-primary" type="text" autocomplete="off"
-                                               name="location">
+                                        <label>Asal Wilayah Kendaraan</label>
+                                        <select class="form-control border border-primary" name="location"
+                                                id="location" required>
+                                            <option value="">--pilih wilayah--</option>
+                                            <option value="jember">Jember</option>
+                                        </select>
                                     </div> <!-- contact-form -->
                                 </div>
                                 <p class="form-message"></p>

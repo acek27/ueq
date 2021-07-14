@@ -15,32 +15,15 @@
                     </button>
 
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                        <ul id="nav" class="navbar-nav m-auto">
+                        <ul id="nav" class="navbar-nav ml-5">
                             <li class="nav-item active">
                                 <a href="#home">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#information">Informasi Personal </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#services">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#portfolio">Portfolio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#blog">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#contact">Contact</a>
+                                <a href="#contact">About Me</a>
                             </li>
                         </ul>
                     </div> <!-- navbar collapse -->
-
-                    <div class="navbar-btn d-none d-sm-inline-block">
-                        <a class="main-btn" data-scroll-nav="0" href="#pricing">Download</a>
-                    </div>
-
                 </nav> <!-- navbar -->
             </div>
         </div> <!-- row -->
