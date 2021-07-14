@@ -58,7 +58,6 @@
     <div id="home" class="bg_cover d-lg-flex align-items-center"
          style="background-image: url(assets/images/header-hero.jpg)">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-wrapper-form pt-115  wow fadeInUpBig" data-wow-duration="1s"
@@ -151,76 +150,75 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 
+    <div class="modal fade" id="notif">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Petunjuk Pengisian Kuesioner UEQ</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-borderless">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1.</td>
+                            <td>
+                                Penilaian metode UEQ merupakan penilaian secara keseluruhan pada aplikasi E-Smart
+                                Samsat Jatim.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>
+                                Berikan penilaian pada poin yang mendekati sesuai dengan impresi anda.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>
+                                Poin paling kiri tidak selalu bernilai buruk dan poin paling kanan tidak selalu bernilai
+                                baik.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>
+                                Pada setiap item pertanyaan merupakan kondisi yang berlawanan.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
+                            <td>
+                                Jika anda memilih impresi negatif, akan ada pertanyaan tambahan mengenai pilihan fitur
+                                yang
+                                harus anda pilih.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 </header>
 
 <!--====== HEADER PART ENDS ======-->
 
 <footer id="footer" class="footer-area bg_cover" style="background-image: url(assets/images/footer-bg.jpg)">
     <div class="container">
-        <div class="footer-widget pt-30 pb-70">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 order-sm-1 order-lg-1">
-                    <div class="footer-about pt-40">
-                        <a href="#">
-                            <img src="assets/images/logo.png" alt="Logo">
-                        </a>
-                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus,
-                            repudiandae! Totam, nemo sed? Provident.</p>
-                        <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus</p>
-                    </div> <!-- footer about -->
-                </div>
-                <div class="col-lg-3 col-sm-6 order-sm-3 order-lg-2">
-                    <div class="footer-link pt-40">
-                        <div class="footer-title">
-                            <h5 class="title">Services</h5>
-                        </div>
-                        <ul>
-                            <li><a href="#">Business Consultancy</a></li>
-                            <li><a href="#">Digital Marketing</a></li>
-                            <li><a href="#">Market Analysis</a></li>
-                            <li><a href="#">Web Development</a></li>
-                        </ul>
-                    </div> <!-- footer link -->
-                </div>
-                <div class="col-lg-3 col-sm-6 order-sm-4 order-lg-3">
-                    <div class="footer-link pt-40">
-                        <div class="footer-title">
-                            <h5 class="title">About Us</h5>
-                        </div>
-                        <ul>
-                            <li><a href="#">Overview</a></li>
-                            <li><a href="#">Why us</a></li>
-                            <li><a href="#">Awards & Recognitions</a></li>
-                            <li><a href="#">Team</a></li>
-                        </ul>
-                    </div> <!-- footer link -->
-                </div>
-                <div class="col-lg-3 col-sm-6 order-sm-2 order-lg-4">
-                    <div class="footer-contact pt-40">
-                        <div class="footer-title">
-                            <h5 class="title">Contact Info</h5>
-                        </div>
-                        <div class="contact pt-10">
-                            <p class="text">21 King Street, Melbourne <br>
-                                Victoria, 1202 Australia.</p>
-                            <p class="text">support@uideck.com</p>
-                            <p class="text">+99 000 555 66 22</p>
-
-                            <ul class="social mt-40">
-                                <li><a href="#"><i class="lni-facebook"></i></a></li>
-                                <li><a href="#"><i class="lni-twitter"></i></a></li>
-                                <li><a href="#"><i class="lni-instagram"></i></a></li>
-                                <li><a href="#"><i class="lni-linkedin"></i></a></li>
-                            </ul>
-                        </div> <!-- contact -->
-                    </div> <!-- footer contact -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- footer widget -->
         <div class="footer-copyright text-center">
             <p class="text">© 2021 Created by Gembelz All Rights Reserved.</p>
         </div>
@@ -281,6 +279,11 @@
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
+    });
+</script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#notif').modal('show');
     });
 </script>
 <script>
