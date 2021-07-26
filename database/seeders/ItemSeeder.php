@@ -71,7 +71,7 @@ class ItemSeeder extends Seeder
                 'item_right' => 'dapat diprediksi',
                 'code' => 'diprediksi',
                 'scale_id' => 4,
-                'category' => 0,
+                'category' => 1,
             ],
              [
                 'item_left' => 'cepat',

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KuesionerController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RespondenController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,4 @@ Route::post('/feature/', [App\Http\Controllers\KuesionerController::class, 'feat
 Route::post('/deletefeature/', [App\Http\Controllers\KuesionerController::class, 'deletefeature'])->name('feature.delete');
 Route::resource('kuesioner', KuesionerController::class);
 Route::resource('responden', RespondenController::class);
+Route::resource('admin', AdminController::class);

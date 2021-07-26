@@ -94,7 +94,7 @@ class KuesionerController extends Controller
         Request::merge(['responden_id' => $id]);
         Kuesioner::create(Request::all());
         Responden::findOrFail($id)->update(['status' => 1]);
-        return redirect()->back()->with('message', 'Berhasil menyimpan data kuesioner.');
+        return view('responden.thanks');
     }
 
     /**
