@@ -92,7 +92,7 @@ class KuesionerController extends Controller
     public function update(Request $request, $id)
     {
         Request::merge(['responden_id' => $id]);
-        Kuesioner::create(Request::all());
+        Kuesioner::updateOrCreate(['responden_id' => $id], Request::all());
         Responden::findOrFail($id)->update(['status' => 1]);
         return view('responden.thanks');
     }

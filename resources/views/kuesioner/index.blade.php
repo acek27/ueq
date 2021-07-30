@@ -26,6 +26,14 @@
     <!--====== Style CSS ======-->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+
+    <link href="{{asset('asetsba2/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{asset('asetsba2/css/sb-admin-2.min.css')}}" rel="stylesheet">
 </head>
 <body>
 <!--[if IE]>
@@ -79,42 +87,89 @@
                         <h4 class="contact-title"><i class="lni-check-box"></i> Form
                             <span>Survei pengalaman pengguna.</span>
                         </h4>
-                        <form id="contact-form" action="{{route('kuesioner.update', $data->id)}}" method="post">
+
+                        <form id="contact-form"
+                              action="{{route('kuesioner.update', $data->id)}}"
+                              method="post">
                             @csrf
                             @method('PUT')
-                            <div class="col-md-10 bg-light">
-                                @php($q = 1)
-                                @foreach($kuesioner as $datum)
-                                    <div class="mt-45">
-                                        <div class="row alert-success">
-                                            <div class="col-sm-4 text-right">
-                                                <label>{{$datum->item_left}}</label>
-                                            </div>
-                                            <div class="col-sm-4 text-center">
-                                                <div class="row">
-                                                    @for($i = 1; $i<=7;$i++)
-                                                        <div class="form-check ml-4">
-                                                            <input class="form-check-input" type="radio"
-                                                                   name="Q{{$q}}" data-id="{{$q}}"
-                                                                   onclick="q{{$q}}checked({{$i}}, {{$q}})"
-                                                                   value="{{$i}}"
-                                                                   required>
+                            <div class="tab-content">
+                                @php($tab = 1)
+                                @php($temp = 0)
+                                @foreach($kuesioner->chunk(7) as $putri)
+                                    <div role="tabpanel" class="tab-pane fade {{$tab == 1 ? 'in active show':''}}"
+                                         id="q-tab{{$tab}}">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-12 mb-4">
+                                                <!-- Project Card Example -->
+                                                <div class="card shadow mb-4">
+                                                    <div class="card-header py-3">
+                                                        <h6 class="m-0 font-weight-bold text-primary">Kuesioner</h6>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="col-md-12 bg-light">
+                                                            @php($q = 1+$temp)
+                                                            @foreach($putri as $datum)
+                                                                <div class="mt-45">
+                                                                    <div class="row alert-success">
+                                                                        <div class="col-sm-4 text-right">
+                                                                            <label
+                                                                                style="font-size: larger"><strong>{{$datum->item_left}}</strong></label>
+                                                                        </div>
+                                                                        <div class="col-sm-4 text-center">
+                                                                            <div class="row">
+                                                                                @for($i = 1; $i<=7;$i++)
+                                                                                    <div class="form-check ml-4">
+                                                                                        <input class="form-check-input"
+                                                                                               type="radio"
+                                                                                               name="Q{{$q}}"
+                                                                                               data-id="{{$q}}"
+                                                                                               onclick="q{{$q}}checked({{$i}}, {{$q}})"
+                                                                                               value="{{$i}}"
+                                                                                               required>
+                                                                                    </div>
+                                                                                @endfor
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-4 text-left">
+                                                                            <label
+                                                                                style="font-size: larger"><strong>{{$datum->item_right}}</strong></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @php($q++)
+                                                                @php($temp++)
+                                                            @endforeach
                                                         </div>
-                                                    @endfor
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        {{--                                                    @if($tab > 1)--}}
+                                                        {{--                                                        <a class="btn btn-primary" href="#q-tab{{$tab - 1}}"--}}
+                                                        {{--                                                           role="tab"--}}
+                                                        {{--                                                           data-toggle="tab"><i--}}
+                                                        {{--                                                                class="fa fa-arrow-left"></i></a>--}}
+                                                        {{--                                                    @endif--}}
+                                                        @if($tab < 4)
+                                                            <a class="btn btn-primary" id="next{{$tab}}"
+                                                               href="#q-tab{{$tab+1}}"
+                                                               role="tab" style="float: right"
+                                                               data-toggle="tab"><i
+                                                                    class="fa fa-arrow-right"></i></a>
+                                                        @endif
+                                                        @if($tab == 4)
+                                                            <button class="btn btn-primary" type="submit"
+                                                                    style="float: right"><i class="fa fa-upload"></i>
+                                                                Submit
+                                                            </button>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-4 text-left">
-                                                <label>{{$datum->item_right}}</label>
                                             </div>
                                         </div>
                                     </div>
-                                    @php($q++)
+                                    @php($tab++)
                                 @endforeach
-                                <div class="col-md-12 text-center">
-                                    <div class="contact-form mt-45">
-                                        <button type="submit" class="main-btn">Submit</button>
-                                    </div> <!-- contact-form -->
-                                </div>
                             </div>
                         </form>
                     </div> <!-- contact wrapper form -->
@@ -123,9 +178,9 @@
         </div> <!-- container -->
     </div> <!-- header hero -->
     <!-- Modal -->
-    <div class="modal fade" data-keyboard="false" data-backdrop="static" id="myModal" role="dialog">
+    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="item" aria-hidden="true">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -197,14 +252,14 @@
                                 Pada setiap item pertanyaan merupakan kondisi yang berlawanan.
                             </td>
                         </tr>
-                        <tr>
-                            <td>5.</td>
-                            <td>
-                                Jika anda memilih impresi negatif, akan ada pertanyaan tambahan mengenai pilihan fitur
-                                yang
-                                harus anda pilih.
-                            </td>
-                        </tr>
+                        {{--                        <tr>--}}
+                        {{--                            <td>5.</td>--}}
+                        {{--                            <td>--}}
+                        {{--                                Jika anda memilih impresi negatif, akan ada pertanyaan tambahan mengenai pilihan fitur--}}
+                        {{--                                yang--}}
+                        {{--                                harus anda pilih.--}}
+                        {{--                            </td>--}}
+                        {{--                        </tr>--}}
                         </tbody>
                     </table>
                 </div>
@@ -273,6 +328,14 @@
 <!--====== Main js ======-->
 
 <script src="{{asset('assets/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('asetsba2/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('asetsba2/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{asset('asetsba2/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{asset('asetsba2/js/sb-admin-2.min.js')}}"></script>
 
 <script>
     $.ajaxSetup({
