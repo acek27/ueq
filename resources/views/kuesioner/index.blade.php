@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="_token" content="{{ csrf_token() }}">
+{{--    <meta name="viewport" content="initial-scale=0.1">--}}
     <!--====== Title ======-->
     <title>Consult - Business Consultancy Agency Template | Home</title>
     <meta name="description" content="">
@@ -34,6 +35,15 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('asetsba2/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <style>
+        .container-non-responsive {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 1165px;
+        }
+    </style>
 </head>
 <body>
 <!--[if IE]>
@@ -65,7 +75,7 @@
 
     <div id="home" class="bg_cover d-lg-flex align-items-center"
          style="background-image: url(assets/images/header-hero.jpg)">
-        <div class="container">
+        <div class="container-non-responsive">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-wrapper-form pt-115  wow fadeInUpBig" data-wow-duration="1s"
@@ -101,23 +111,23 @@
                                          id="q-tab{{$tab}}">
                                         <br>
                                         <div class="row">
-                                            <div class="col-lg-12 mb-4">
+                                            <div class="col-lg-12 col-sm-12 col-12 col-sm-12 mb-4">
                                                 <!-- Project Card Example -->
                                                 <div class="card shadow mb-4">
                                                     <div class="card-header py-3">
                                                         <h6 class="m-0 font-weight-bold text-primary">Kuesioner</h6>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="col-md-12 bg-light">
+                                                        <div class="col-md-12 col-12 col-sm-12 bg-light">
                                                             @php($q = 1+$temp)
                                                             @foreach($putri as $datum)
                                                                 <div class="mt-45">
                                                                     <div class="row alert-success">
-                                                                        <div class="col-sm-4 text-right">
+                                                                        <div class="col-sm-3 col-3 d-flex justify-content-end">
                                                                             <label
                                                                                 style="font-size: larger"><strong>{{$datum->item_left}}</strong></label>
                                                                         </div>
-                                                                        <div class="col-sm-4 text-center">
+                                                                        <div class="col-sm-6 col-6 text-center justify-content-center d-flex">
                                                                             <div class="row">
                                                                                 @for($i = 1; $i<=7;$i++)
                                                                                     <div class="form-check ml-4">
@@ -128,11 +138,12 @@
                                                                                                onclick="q{{$q}}checked({{$i}}, {{$q}})"
                                                                                                value="{{$i}}"
                                                                                                required>
+                                                                                        <label>{{$i}}</label>
                                                                                     </div>
                                                                                 @endfor
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-sm-4 text-left">
+                                                                        <div class="col-sm-3 col-3 d-flex justify-content-start">
                                                                             <label
                                                                                 style="font-size: larger"><strong>{{$datum->item_right}}</strong></label>
                                                                         </div>
@@ -346,7 +357,7 @@
 </script>
 <script type="text/javascript">
     $(window).on('load', function () {
-        $('#notif').modal('show');
+        // $('#notif').modal('show');
     });
 </script>
 <script>
