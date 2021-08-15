@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('index')}}">
                         <img src="{{asset('assets/images/logo.png')}}" alt="Logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -16,12 +16,15 @@
 
                     <div class="collapse navbar-collapse sub-menu-bar">
                         <ul id="nav" class="navbar-nav ml-5">
-                            <li class="nav-item active">
-                                <a href="#home">Home</a>
+                            <li class="nav-item">
+                                <a href="{{route('index')}}" target="_blank">Beranda</a>
                             </li>
                             @guest
                                 <li class="nav-item">
-                                    <a href="#contact">About Me</a>
+                                    <a href="{{route('tentang')}}" target="_blank">Tentang Saya</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a target="_blank" href="#contact">Contoh Pengisian Kuesioner</a>
                                 </li>
                             @endguest
                         </ul>

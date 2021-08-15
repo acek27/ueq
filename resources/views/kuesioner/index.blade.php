@@ -5,7 +5,7 @@
     <meta name="_token" content="{{ csrf_token() }}">
 {{--    <meta name="viewport" content="initial-scale=0.1">--}}
     <!--====== Title ======-->
-    <title>Consult - Business Consultancy Agency Template | Home</title>
+    <title>Survei Kepuasan Pengguna - Kuesioner</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--====== Favicon Icon ======-->
@@ -115,9 +115,13 @@
                                                 <!-- Project Card Example -->
                                                 <div class="card shadow mb-4">
                                                     <div class="card-header py-3">
-                                                        <h6 class="m-0 font-weight-bold text-primary">Kuesioner</h6>
+                                                        <h6 class="m-0 font-weight-bold text-primary">Kuesioner
+{{--                                                            <span class="text-muted font-italic"> (test</span>--}}
+                                                        </h6>
                                                     </div>
                                                     <div class="card-body">
+                                                        <h4 class="font-weight-bold">Setelah anda menggunakan Aplikasi E-Smart Samsat
+                                                        Jatim, bagaimana impresi anda terkait keseluruhan tampilan aplikasi tersebut?</h4>
                                                         <div class="col-md-12 col-12 col-sm-12 bg-light">
                                                             @php($q = 1+$temp)
                                                             @foreach($putri as $datum)
@@ -165,7 +169,7 @@
                                                             <a class="btn btn-primary" id="next{{$tab}}"
                                                                href="#q-tab{{$tab+1}}"
                                                                role="tab" style="float: right"
-                                                               data-toggle="tab"><i
+                                                               data-toggle="tab">Selanjutnya <i
                                                                     class="fa fa-arrow-right"></i></a>
                                                         @endif
                                                         @if($tab == 4)

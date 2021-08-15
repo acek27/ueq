@@ -26,6 +26,9 @@ class IndexController extends Controller
         //
     }
 
+    public function tentang (){
+        return view('tentang');
+    }
     /**
      * Store a newly created resource in storage.
      *
