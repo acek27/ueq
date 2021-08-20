@@ -29,6 +29,10 @@ class IndexController extends Controller
     public function tentang (){
         return view('tentang');
     }
+
+    public function contoh (){
+        return view('contoh');
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="{{route('index')}}">
-                        <img src="{{asset('assets/images/logo.png')}}" alt="Logo">
+                        <img style="width: 60%" src="{{asset('assets/images/contoh/logo1.png')}}" alt="Logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -24,7 +24,7 @@
                                     <a href="{{route('tentang')}}" target="_blank">Tentang Saya</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a target="_blank" href="#contact">Contoh Pengisian Kuesioner</a>
+                                    <a target="_blank" href="{{route('contoh')}}">Contoh Pengisian Kuesioner</a>
                                 </li>
                             @endguest
                         </ul>

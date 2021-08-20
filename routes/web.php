@@ -22,6 +22,7 @@ use App\Http\Controllers\AdminController;
 //});
 Route::resource('/', IndexController::class);
 Route::get('/tentang', [App\Http\Controllers\IndexController::class, 'tentang'])->name('tentang');
+Route::get('/contoh', [App\Http\Controllers\IndexController::class, 'contoh'])->name('contoh');
 
 Auth::routes();
 
