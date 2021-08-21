@@ -5,17 +5,19 @@
     <div id="home" class="header-hero bg_cover d-lg-flex align-items-center"
          style="background-image: url(assets/images/header-hero.jpg)">
         <div class="container">
-            @if(session()->has('message'))
-                <div class="alert alert-danger">
-                    {{ session()->get('message') }}
-                </div>
-            @endif
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    {!! $errors->first('email', '<p style="color:red">Maaf! Anda sudah melakukan kuesioner ini.</p>') !!}
-                </div>
+           <div class="col-lg-6">
+               @if(session()->has('message'))
+                   <div class="alert alert-danger">
+                       {{ session()->get('message') }}
+                   </div>
+               @endif
+               @if ($errors->any())
+                   <div class="alert alert-danger">
+                       {!! $errors->first('email', '<p style="color:red">Maaf! Anda sudah melakukan kuesioner ini.</p>') !!}
+                   </div>
 
-            @endif
+               @endif
+           </div>
             <div class="row">
                 <div class="col-lg-7">
                     <div class="header-hero-content">
@@ -23,9 +25,9 @@
                             <b>Survei</b><br> <span>Pengalaman Pengguna</span>
                             Aplikasi <b>E-Smart Samsat Jatim</b></h1>
                         <p class="text wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
-                            Mohon Ketersediaannya untuk mengisi kuesioner berikut, diharapkan untuk mengisi data dengan
-                            valid karena akan ada hadiah untuk 4 orang yang beruntung. Terimakasih telah meluangkan
-                            waktunya, semoga bahagia dan sehat selalu!
+                            Mohon kesediannya untuk mengisi kuesioner berikut. Diharapkan untuk mengisi data dengan
+                            valid karena akan ada hadiah untuk 4 (empat) orang yang beruntung. Terima kasih telah meluangkan
+                            waktunya. Semoga bahagia dan sehat selalu!
                         </p>
                         <div class="wow fadeInUp mt-3" data-wow-duration="1s" data-wow-delay="0.8s">
                             <a href="#information" class="main-btn"> Mulai <i class="fa fa-arrow-right"></i></a>
@@ -43,11 +45,9 @@
     </div> <!-- header hero -->
 
 
-
-
     <!--====== ABOUT PART START ======-->
 
-    <section id="information" class="about-area pt-115">
+    <section id="information" class="about-area pt-115 pb-80">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-9">
@@ -104,7 +104,7 @@
 
     <!--====== CONTACT PART START ======-->
 
-    <section id="contact" class="contact-area pt-120 pb-120">
+    <section id="contact" class="contact-area pt-200 pb-120">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">

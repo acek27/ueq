@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="{{route('index')}}">
-                        <img style="width: 60%" src="{{asset('assets/images/contoh/logo1.png')}}" alt="Logo">
+                        <img style="width: 60%" src="{{asset('assets/images/contoh/1.png')}}" alt="Logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

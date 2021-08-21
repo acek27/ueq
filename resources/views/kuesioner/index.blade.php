@@ -361,7 +361,7 @@
 </script>
 <script type="text/javascript">
     $(window).on('load', function () {
-        // $('#notif').modal('show');
+        $('#notif').modal('show');
     });
 </script>
 <script>

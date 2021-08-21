@@ -17,7 +17,7 @@
                                         <h4 class="title">Contoh Pengisian Kuesioner UEQ</h4>
                                     </div> <!-- section title -->
                                     <div class="text-left mr-20 ml-20 pb-25">
-                                        <p style="font-size: larger">1. Terdapat 2 impresi berlawanan. Pilih sesuai
+                                        <p style="font-size: larger">1. Terdapat 2 (dua) impresi berlawanan. Pilih sesuai
                                             dengan
                                             impresi anda.</p>
                                         <br>
