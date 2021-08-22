@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="_token" content="{{ csrf_token() }}">
 {{--    <meta name="viewport" content="initial-scale=0.1">--}}
-    <!--====== Title ======-->
+<!--====== Title ======-->
     <title>Survei Kepuasan Pengguna - Kuesioner</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('assets/images/contoh/questionnaire.png')}}" type="image/png">
     <!--====== Slick CSS ======-->
     <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
     <!--====== Font Awesome CSS ======-->
@@ -98,7 +98,7 @@
                             <span>Survei pengalaman pengguna.</span>
                         </h4>
 
-                        <form id="contact-form"
+                        <form id="formQ"
                               action="{{route('kuesioner.update', $data->id)}}"
                               method="post">
                             @csrf
@@ -116,22 +116,26 @@
                                                 <div class="card shadow mb-4">
                                                     <div class="card-header py-3">
                                                         <h6 class="m-0 font-weight-bold text-primary">Kuesioner
-{{--                                                            <span class="text-muted font-italic"> (test</span>--}}
+                                                            {{--                                                            <span class="text-muted font-italic"> (test</span>--}}
                                                         </h6>
                                                     </div>
                                                     <div class="card-body">
-                                                        <h4 class="font-weight-bold">Setelah anda menggunakan Aplikasi E-Smart Samsat
-                                                        Jatim, bagaimana impresi anda terkait keseluruhan tampilan aplikasi tersebut?</h4>
+                                                        <h4 class="font-weight-bold">Setelah anda menggunakan Aplikasi
+                                                            E-Smart Samsat
+                                                            Jatim, bagaimana impresi anda terkait keseluruhan tampilan
+                                                            aplikasi tersebut?</h4>
                                                         <div class="col-md-12 col-12 col-sm-12 bg-light">
                                                             @php($q = 1+$temp)
                                                             @foreach($putri as $datum)
                                                                 <div class="mt-45">
                                                                     <div class="row alert-success">
-                                                                        <div class="col-sm-3 col-3 d-flex justify-content-end">
+                                                                        <div
+                                                                            class="col-sm-3 col-3 d-flex justify-content-end">
                                                                             <label
                                                                                 style="font-size: larger"><strong>{{$datum->item_left}}</strong></label>
                                                                         </div>
-                                                                        <div class="col-sm-6 col-6 text-center justify-content-center d-flex">
+                                                                        <div
+                                                                            class="col-sm-6 col-6 text-center justify-content-center d-flex">
                                                                             <div class="row">
                                                                                 @for($i = 1; $i<=7;$i++)
                                                                                     <div class="form-check ml-4">
@@ -139,6 +143,7 @@
                                                                                                type="radio"
                                                                                                name="Q{{$q}}"
                                                                                                data-id="{{$q}}"
+                                                                                               id="Q{{$q}}"
                                                                                                onclick="q{{$q}}checked({{$i}}, {{$q}})"
                                                                                                value="{{$i}}"
                                                                                                required>
@@ -147,7 +152,8 @@
                                                                                 @endfor
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-sm-3 col-3 d-flex justify-content-start">
+                                                                        <div
+                                                                            class="col-sm-3 col-3 d-flex justify-content-start">
                                                                             <label
                                                                                 style="font-size: larger"><strong>{{$datum->item_right}}</strong></label>
                                                                         </div>
@@ -166,15 +172,19 @@
                                                         {{--                                                                class="fa fa-arrow-left"></i></a>--}}
                                                         {{--                                                    @endif--}}
                                                         @if($tab < 4)
-                                                            <a class="btn btn-primary" id="next{{$tab}}"
-                                                               href="#q-tab{{$tab+1}}"
-                                                               role="tab" style="float: right"
-                                                               data-toggle="tab">Selanjutnya <i
-                                                                    class="fa fa-arrow-right"></i></a>
+                                                            <ul class="nav-tabs">
+                                                                <a class="btn btn-primary" id="next{{$tab}}"
+                                                                   aria-selected="false" data-toggle="tab"
+                                                                   href="#q-tab{{$tab+1}}"
+                                                                   role="tab" style="float: right"
+                                                                   data-toggle="tab">Selanjutnya <i
+                                                                        class="fa fa-arrow-right"></i></a>
+                                                            </ul>
                                                         @endif
                                                         @if($tab == 4)
                                                             <button class="btn btn-primary" type="submit"
-                                                                    style="float: right"><i class="fa fa-upload"></i>
+                                                                    style="float: right" id="btnSubmit"><i
+                                                                    class="fa fa-upload"></i>
                                                                 Submit
                                                             </button>
                                                         @endif
@@ -361,7 +371,7 @@
 </script>
 <script type="text/javascript">
     $(window).on('load', function () {
-        $('#notif').modal('show');
+        // $('#notif').modal('show');
     });
 </script>
 <script>
@@ -378,6 +388,18 @@
             }
         });
     }
+
+    $('#btnSubmit').click(function () {
+        $('input:invalid').each(function () {
+            // Find the tab-pane that this element is inside, and get the id
+            var $closest = $(this).closest('.tab-pane');
+            var id = $closest.attr('id');
+            // Find the link that corresponds to the pane and have it show
+            $('.nav-tabs a[href="#' + id + '"]').tab('show');
+            // Only want to do it once
+            return false;
+        });
+    });
 
     function logic(q, i, data, left, right) { //fungsi logika untuk tampil popup
         if (data === 1) {

@@ -12,21 +12,16 @@
                         <div class="card">
                             <div class="row justify-content-center mt-20">
                                 <div class="col-lg-6">
-                                    <div class="section-title text-center pb-20 wow fadeInUp" data-wow-duration="1s"
+                                    <div class="section-title text-center pb-20 pt-30 wow fadeInUp" data-wow-duration="1s"
                                          data-wow-delay="0.2s">
-                                        <h6 class="sub-title">TERIMAKASIH ORANG BAIK!</h6>
-                                        <h4 class="title">Hallo, Saya Baitsu Putri Hidayah</h4>
+                                        <p style="font-size: larger">Hallo, perkenalkan nama saya Baitsu Putri H. Seorang
+                                            mahasiswi tingkat akhir di Fakultas Ilmu Komputer Universitas Jember. Saya
+                                            mengucapkan terima kasih karena telah meluangkan waktunya untuk mengisi kuesioner
+                                            saya. Untuk 4 responden yang beruntung yang dipilih secara random akan saya hubungi
+                                            melalui e-mail. Terimakasih, semoga sehat selalu🙏 </p>
                                     </div> <!-- section title -->
                                 </div>
-                            </div> <!-- row -->
-                            <div class="text-center mr-20 ml-20">
-                                <p style="font-size: larger">Mahasiswa tingkat akhir Fakultas Ilmu Komputer Universitas
-                                    Jember.
-                                    Terimakasih sudah meluangkan waktunya untuk mengisi Kuesioner untuk keperluan tugas
-                                    akhir saya.
-                                    Akan ada 5 Orang yang beruntung akan saya hubungi lewat email,
-                                    semoga kamu beruntung!</p>
-                            </div>
+                            </div> <!-- row -->>
                             <div class="row justify-content-center">
                                 <div class="single-contact-info contact-color-2 mt-30 d-flex  wow fadeInUp"
                                      data-wow-duration="1s" data-wow-delay="0.6s">

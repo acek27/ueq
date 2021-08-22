@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" type="image/png">
+    <link rel="shortcut icon" href="{{asset('assets/images/contoh/questionnaire.png')}}" type="image/png">
     <!--====== Slick CSS ======-->
     <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
     <!--====== Font Awesome CSS ======-->
