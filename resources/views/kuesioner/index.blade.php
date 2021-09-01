@@ -170,72 +170,70 @@
                             </div>
                         </div>
                         <form role="form">
-                            <form role="form">
-                                @php($tab = 1)
-                                @php($temp = 0)
-                                @foreach($kuesioner->chunk(7) as $putri)
-                                    <div class="row setup-content" id="step-{{$tab}}">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-primary">Kuesioner
-                                                    {{--                                                            <span class="text-muted font-italic"> (test</span>--}}
-                                                </h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <h4 class="font-weight-bold">Setelah anda menggunakan Aplikasi
-                                                    E-Smart Samsat
-                                                    Jatim, bagaimana impresi anda terkait keseluruhan tampilan
-                                                    aplikasi tersebut?</h4>
-                                                <div class="col-md-12 col-12 col-sm-12 bg-light">
-                                                    @php($q = 1+$temp)
-                                                    @foreach($putri as $datum)
-                                                        <div class="mt-45">
-                                                            <div class="row alert-success">
-                                                                <div
-                                                                    class="col-sm-3 col-3 d-flex justify-content-end">
-                                                                    <label
-                                                                        style="font-size: larger"><strong>{{$datum->item_left}}</strong></label>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-6 col-6 text-center justify-content-center d-flex">
-                                                                    <div class="row">
-                                                                        @for($i = 1; $i<=7;$i++)
-                                                                            <div class="form-check ml-4">
-                                                                                <input class="form-check-input"
-                                                                                       type="radio"
-                                                                                       name="Q{{$q}}"
-                                                                                       data-id="{{$q}}"
-                                                                                       id="Q{{$q}}"
-                                                                                       onclick="q{{$q}}checked({{$i}}, {{$q}})"
-                                                                                       value="{{$i}}"
-                                                                                       required>
-                                                                                <label>{{$i}}</label>
-                                                                            </div>
-                                                                        @endfor
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="col-sm-3 col-3 d-flex justify-content-start">
-                                                                    <label
-                                                                        style="font-size: larger"><strong>{{$datum->item_right}}</strong></label>
+                            @php($tab = 1)
+                            @php($temp = 0)
+                            @foreach($kuesioner->chunk(7) as $putri)
+                                <div class="row setup-content" id="step-{{$tab}}">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h6 class="m-0 font-weight-bold text-primary">Kuesioner
+                                                {{--                                                            <span class="text-muted font-italic"> (test</span>--}}
+                                            </h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="font-weight-bold">Setelah anda menggunakan Aplikasi
+                                                E-Smart Samsat
+                                                Jatim, bagaimana impresi anda terkait keseluruhan tampilan
+                                                aplikasi tersebut?</h4>
+                                            <div class="col-md-12 col-12 col-sm-12 bg-light">
+                                                @php($q = 1+$temp)
+                                                @foreach($putri as $datum)
+                                                    <div class="mt-45">
+                                                        <div class="row alert-success">
+                                                            <div
+                                                                class="col-sm-3 col-3 d-flex justify-content-end">
+                                                                <label
+                                                                    style="font-size: larger"><strong>{{$datum->item_left}}</strong></label>
+                                                            </div>
+                                                            <div
+                                                                class="col-sm-6 col-6 text-center justify-content-center d-flex">
+                                                                <div class="row">
+                                                                    @for($i = 1; $i<=7;$i++)
+                                                                        <div class="form-check ml-4">
+                                                                            <input class="form-check-input"
+                                                                                   type="radio"
+                                                                                   name="Q{{$q}}"
+                                                                                   data-id="{{$q}}"
+                                                                                   id="Q{{$q}}"
+                                                                                   onclick="q{{$q}}checked({{$i}}, {{$q}})"
+                                                                                   value="{{$i}}"
+                                                                                   required="required">
+                                                                            <label>{{$i}}</label>
+                                                                        </div>
+                                                                    @endfor
                                                                 </div>
                                                             </div>
+                                                            <div
+                                                                class="col-sm-3 col-3 d-flex justify-content-start">
+                                                                <label
+                                                                    style="font-size: larger"><strong>{{$datum->item_right}}</strong></label>
+                                                            </div>
                                                         </div>
-                                                        @php($q++)
-                                                        @php($temp++)
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">
-                                                    Next
-                                                </button>
+                                                    </div>
+                                                    @php($q++)
+                                                    @php($temp++)
+                                                @endforeach
                                             </div>
                                         </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">
+                                                Next
+                                            </button>
+                                        </div>
                                     </div>
-                                    @php($tab++)
-                                @endforeach
-                            </form>
+                                </div>
+                                @php($tab++)
+                            @endforeach
                         </form>
                     </div> <!-- contact wrapper form -->
                 </div>
@@ -351,7 +349,9 @@
 
 <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
 {{--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>--}}
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 <script src="{{asset('assets/js/vendor/modernizr-3.7.1.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/slick.min.js')}}"></script>
@@ -407,16 +407,17 @@
             var curStep = $(this).closest(".setup-content"),
                 curStepBtn = curStep.attr("id"),
                 nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                curInputs = curStep.find("input[type='radio'],input[type='url']"),
                 isValid = true;
 
-            $(".form-group").removeClass("has-error");
+            $(".form-check").removeClass("text-danger");
             for (var i = 0; i < curInputs.length; i++) {
                 if (!curInputs[i].validity.valid) {
                     isValid = false;
-                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                    $(curInputs[i]).closest(".form-check").addClass("text-danger");
                 }
             }
+            alert("Lengkapi penilaian terlebih dahulu sebelum melanjutkan")
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
