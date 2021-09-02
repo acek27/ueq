@@ -169,7 +169,10 @@
                                 </div>
                             </div>
                         </div>
-                        <form role="form">
+                        <form role="form" action="{{route('kuesioner.update', $data->id)}}"
+                              method="post">
+                            @csrf
+                            @method('PUT')
                             @php($tab = 1)
                             @php($temp = 0)
                             @foreach($kuesioner->chunk(7) as $putri)
@@ -225,11 +228,19 @@
                                                 @endforeach
                                             </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">
-                                                Next
-                                            </button>
-                                        </div>
+                                        @if($tab <= 3)
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">
+                                                    Next
+                                                </button>
+                                            </div>
+                                        @elseif($tab == 4)
+                                            <div class="card-footer">
+                                                <button class="btn btn-success nextBtn btn-lg pull-right" type="submit">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 @php($tab++)
@@ -417,7 +428,6 @@
                     $(curInputs[i]).closest(".form-check").addClass("text-danger");
                 }
             }
-            alert("Lengkapi penilaian terlebih dahulu sebelum melanjutkan")
 
             if (isValid)
                 nextStepWizard.removeAttr('disabled').trigger('click');
