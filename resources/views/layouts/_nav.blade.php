@@ -6,15 +6,13 @@
                     <a class="navbar-brand" href="{{route('index')}}">
                         <img style="width: 60%" src="{{asset('assets/images/contoh/1.png')}}" alt="Logo">
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="toggler-icon"></span>
                         <span class="toggler-icon"></span>
                         <span class="toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse sub-menu-bar">
+                    <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                         <ul id="nav" class="navbar-nav ml-5">
                             <li class="nav-item">
                                 <a href="{{route('index')}}" target="_blank">Beranda</a>
@@ -53,6 +51,10 @@
                             @endauth
                         </ul>
                     </div> <!-- navbar collapse -->
+
+                    <div class="navbar-btn d-none d-sm-inline-block">
+                        <a class="main-btn" data-scroll-nav="0" href="#pricing">Download</a>
+                    </div>
                 </nav> <!-- navbar -->
             </div>
         </div> <!-- row -->
