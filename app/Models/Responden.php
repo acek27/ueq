@@ -14,6 +14,6 @@ class Responden extends Model
 
     public function kuesioner()
     {
-        return $this->hasOne(Kuesioner::class, 'responden_id');
+        return $this->hasOne(Kuesioner::class, 'responden_id')->withDefault();
     }
 }

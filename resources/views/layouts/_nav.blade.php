@@ -52,9 +52,6 @@
                         </ul>
                     </div> <!-- navbar collapse -->
 
-                    <div class="navbar-btn d-none d-sm-inline-block">
-                        <a class="main-btn" data-scroll-nav="0" href="#pricing">Download</a>
-                    </div>
                 </nav> <!-- navbar -->
             </div>
         </div> <!-- row -->

@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = Responden::paginate(20);
+        $data = Responden::where('status',1)->paginate(20);
 //        return $data;
         return view('home', compact('data'));
     }
