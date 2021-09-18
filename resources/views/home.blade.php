@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@push('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
+@endpush
 @section('content')
     @include('layouts._nav')
 
@@ -11,7 +15,7 @@
                         <h4>Data Responden</h4>
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive">
+                        <table id="responden" class="table table-responsive">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Nama Responden</th>
@@ -21,45 +25,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($data as $datum)
-                                <tr>
-                                    <th>{{$datum->name}}</th>
-                                    <td>{{$datum->kuesioner->Q1}}</td>
-                                    <td>{{$datum->kuesioner->Q2}}</td>
-                                    <td>{{$datum->kuesioner->Q3}}</td>
-                                    <td>{{$datum->kuesioner->Q4}}</td>
-                                    <td>{{$datum->kuesioner->Q5}}</td>
-                                    <td>{{$datum->kuesioner->Q6}}</td>
-                                    <td>{{$datum->kuesioner->Q7}}</td>
-                                    <td>{{$datum->kuesioner->Q8}}</td>
-                                    <td>{{$datum->kuesioner->Q9}}</td>
-                                    <td>{{$datum->kuesioner->Q10}}</td>
-                                    <td>{{$datum->kuesioner->Q11}}</td>
-                                    <td>{{$datum->kuesioner->Q12}}</td>
-                                    <td>{{$datum->kuesioner->Q13}}</td>
-                                    <td>{{$datum->kuesioner->Q14}}</td>
-                                    <td>{{$datum->kuesioner->Q15}}</td>
-                                    <td>{{$datum->kuesioner->Q16}}</td>
-                                    <td>{{$datum->kuesioner->Q17}}</td>
-                                    <td>{{$datum->kuesioner->Q18}}</td>
-                                    <td>{{$datum->kuesioner->Q19}}</td>
-                                    <td>{{$datum->kuesioner->Q20}}</td>
-                                    <td>{{$datum->kuesioner->Q21}}</td>
-                                    <td>{{$datum->kuesioner->Q22}}</td>
-                                    <td>{{$datum->kuesioner->Q23}}</td>
-                                    <td>{{$datum->kuesioner->Q24}}</td>
-                                    <td>{{$datum->kuesioner->Q25}}</td>
-                                    <td>{{$datum->kuesioner->Q26}}</td>
-                                </tr>
-                            @endforeach
+
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
-                        {{$data->links()}}
-                    </div>
+
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
     </div> <!-- header hero -->
 @endsection
+@push('scripts')
+    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script !src="">
+        $(document).ready(function () {
+            var dt = $('#responden').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{route('responden.data')}}',
+                columns: [
+                    {data: 'name', name: 'name'},
+                    @for($q=1;$q<=26;$q++)
+                    {data: 'kuesioner.Q{{$q}}', name: 'kuesioner.Q1', orderable: false, searchable: false, align: 'center'},
+                    @endfor
+                    // {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
+                ],
+            });
+        });
+    </script>
+@endpush

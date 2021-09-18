@@ -26,6 +26,7 @@ Route::get('/contoh', [App\Http\Controllers\IndexController::class, 'contoh'])->
 
 Auth::routes();
 
+Route::get('/home/data', [App\Http\Controllers\HomeController::class, 'anyData'])->name('responden.data');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/getitem/{id}', [App\Http\Controllers\KuesionerController::class, 'getItem'])->name('getitem');
 Route::post('/feature/', [App\Http\Controllers\KuesionerController::class, 'feature'])->name('feature.submit');
