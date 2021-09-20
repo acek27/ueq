@@ -1,57 +1,106 @@
-@extends('layouts.master')
-@push('css')
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
-@endpush
-@section('content')
-    @include('layouts._nav')
+    <title>Admin</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<a class="navbar-brand" href="#">UEQ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <div id="home" class="header-hero bg_cover d-lg-flex align-items-center"
-         style="background-image: url(assets/images/header-hero.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="card col-lg-12">
-                    <div class="card-header">
-                        <h4>Data Responden</h4>
-                    </div>
-                    <div class="card-body">
-                        <table id="responden" class="table table-responsive">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Nama Responden</th>
-                                @for($i = 1; $i<=26;$i++)
-                                    <th scope="col">Q{{$i}}</th>
-                                @endfor
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </div> <!-- header hero -->
-@endsection
-@push('scripts')
-    <script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-    <script !src="">
-        $(document).ready(function () {
-            var dt = $('#responden').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: '{{route('responden.data')}}',
-                columns: [
-                    {data: 'name', name: 'name'},
-                    @for($q=1;$q<=26;$q++)
-                    {data: 'kuesioner.Q{{$q}}', name: 'kuesioner.Q1', orderable: false, searchable: false, align: 'center'},
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            Tabel Responden
+        </div>
+        <div class="card-body">
+            <table id="responden" class="table table-responsive">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nama Responden</th>
+                    @for($i = 1; $i<=26;$i++)
+                        <th scope="col">Q{{$i}}</th>
                     @endfor
-                    // {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
-                ],
-            });
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script !src="">
+    $(document).ready(function () {
+        var dt = $('#responden').DataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            ajax: '{{route('responden.data')}}',
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                    @for($q=1;$q<=26;$q++)
+                {data: 'kuesioner.Q{{$q}}', name: 'kuesioner.Q1', orderable: false, searchable: false, align: 'center'},
+                @endfor
+                // {data: 'action', name: 'action', orderable: false, searchable: false, align: 'center'},
+            ],
         });
-    </script>
-@endpush
+    });
+</script>
+</body>
+</html>
