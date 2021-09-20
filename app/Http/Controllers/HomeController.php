@@ -28,6 +28,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function show()
+    {
+        return view('admin.unfinished');
+    }
+
     public function anyData()
     {
         return DataTables::of(Responden::where('status', 1))
@@ -35,6 +40,17 @@ class HomeController extends Controller
 //                $edit = '<a href="' . route($this->route . '.edit', [$this->route => $data->id]) . '"><i class="fa fa-edit text-primary"></i></a>';
 //                $del = '<a href="#" data-id="' . $data->id . '" class="hapus-data"> <i class="fa fa-trash text-danger"></i></a>';
 //                return $edit . '&nbsp' . '&nbsp' . $del;
+            })
+            ->make(true);
+    }
+
+    public function unfinished()
+    {
+        return DataTables::of(Responden::where('status', 0))
+            ->addColumn('action', function ($data) {
+                $edit = '<a href="' . route('responden.edit', $data->key) . '"></i>edit</a>';
+//                $del = '<a href="#" data-id="' . $data->id . '" class="hapus-data"> <i class="fa fa-trash text-danger"></i></a>';
+                return $edit;
             })
             ->make(true);
     }
